@@ -1,4 +1,4 @@
-﻿namespace Article;
+namespace Article;
 
 class Article
 {
@@ -68,7 +68,7 @@ class Article
 
 }
 
-class Product
+struct Product
 {
     public Guid code { get; set; }
     public string? name { get; set; }
@@ -81,9 +81,97 @@ class Product
         this.name = name;
         this.price = price;
     }
+
+
+    public static double operator+(Product p1, Product p2)
+    {
+        return p1.price + p2.price;
+    }
+    public static double operator-(Product p1, Product p2)
+    {
+        return p1.price + p2.price;
+    }
+    public static double operator*(Product p1, Product p2)
+    {
+        return p1.price * p2.price;
+    }
+    public static double operator/(Product p1, Product p2)
+    {
+        return p1.price / p2.price;
+    }
+
+    public static Product operator--(Product p1)
+    {
+        p1.price--;
+        return p1;
+    }
+
+    public static Product operator++(Product p1)
+    {
+        p1.price--;
+        return p1;
+    }
+
+    public static bool operator==(Product p1, Product p2)
+    {
+        return p1.code == p2.code;
+    }
+
+    public static bool operator!=(Product p1, Product p2)
+    {
+        return p1.code != p2.code;
+    }
+    public static bool operator>(Product p1, Product p2)
+    {
+        return p1.price > p2.price;
+    }
+    public static bool operator<(Product p1, Product p2)
+    {
+        return p1.price < p2.price;
+    }
+    public static bool operator>=(Product p1, Product p2)
+    {
+        return p1.price >= p2.price;
+    }
+    public static bool operator<=(Product p1, Product p2)
+    {
+        return p1.price <= p2.price;
+    }
+    
+
+
 }
 
+struct Client
+{
+    public Guid clientCode;
+    public string? fullName;
+    public string? address;
+    public string? telephone;
+    public int numberOfOrder;
+    public int totalAmountOfOrders;
 
+    public Client(Guid clientCode, string? fullName, string? address, string? telephone, int numberOfOrder, int totalAmountOfOrders)
+    {
+        this.clientCode = clientCode;
+        this.fullName = fullName;
+        this.address = address;
+        this.telephone = telephone;
+        this.numberOfOrder = numberOfOrder;
+        this.totalAmountOfOrders = totalAmountOfOrders;
+    }
+
+    public static bool operator==(Client c1, Client c2)
+    {
+        return c1.fullName == c2.fullName || c1.clientCode == c2.clientCode;
+    }
+    public static bool operator!=(Client c1, Client c2)
+    {
+        return c1.fullName != c2.fullName || c1.clientCode != c2.clientCode;
+    }
+    
+
+}
 class Program
 {
     static void Main()
